@@ -1,31 +1,24 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "hostRequirements": {
-    "cpus": 4
-  },
-  "waitFor": "onCreateCommand",
-  "updateContentCommand": "pip install -r requirements.txt && python manage.py migrate",
-  "postCreateCommand": "cp .env.example .env",
-  "postAttachCommand": {
-    "server": "python manage.py runserver"
-  },
+  "name": "E-commerce-REST-API-Bug-Hunt-Python-Django- Challenge (RepoHamster)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "forwardPorts": [
+    3001,
+    5173
+  ],
+  "postCreateCommand": "npm install && (test -f .env || cp .env.example .env) && (chmod 444 .vscode/settings.json .github/copilot-instructions.md 2>/dev/null || true)",
   "customizations": {
-    "codespaces": {
-      "openFiles": [
-        "hello_world/templates/index.html"
-      ]
-    },
     "vscode": {
+      "settings": {
+        "editor.inlineSuggest.enabled": false,
+        "github.copilot.inlineSuggest.enable": false,
+        "github.copilot.editor.enableCodeActions": false,
+        "github.copilot.advanced": {
+          "inlineSuggestCount": 0
+        }
+      },
       "extensions": [
-        "ms-python.python"
+        "dbaeumer.vscode-eslint"
       ]
     }
-  },
-  "portsAttributes": {
-    "8000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
-    }
-  },
-  "forwardPorts": [8000]
+  }
 }
