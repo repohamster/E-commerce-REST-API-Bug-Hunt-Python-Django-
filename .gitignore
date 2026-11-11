@@ -222,4 +222,7 @@ db.sqlite3
 __pycache__/
 staticfiles/
 .env
-venv/
+
+node_modules/
+coverage/
+

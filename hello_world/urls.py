@@ -16,17 +16,18 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
 
-from hello_world.core import views as core_views
+from hello_world.core import views
 
 urlpatterns = [
-    path("", core_views.index),
     path("admin/", admin.site.urls),
-    path("__reload__/", include("django_browser_reload.urls")),
+    path("api/auth/register", views.register),
+    path("api/auth/login", views.login),
+    path("api/products", views.products),
+    path("api/profile", views.profile),
+    path("api/cart", views.cart_detail),
+    path("api/cart/items", views.add_cart_item),
+    path("api/cart/items/<int:product_id>", views.update_cart_item),
+    path("api/orders", views.place_order),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
